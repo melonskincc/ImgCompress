@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter.filedialog import *
 from PIL import Image
+import shutil
 
 info = {'path': []}
 
@@ -9,11 +10,20 @@ def make_app():
     app = Tk()
     # 标签
     Label(app, text='图片压缩小工具', font=('Hack', 20, 'bold')).pack()
-    Listbox(app, name='lbox', bg='#f2f2f2').pack(fill=BOTH, expand=True)
-    Button(app, text='Open', command=ui_getdata).pack()
-    Button(app, text='compress', command=compress).pack()
+    Listbox(app, name='lbox', bg='#f2f2f2', selectmode=EXTENDED).pack(fill=BOTH, expand=True)
+    Button(app, text='打开', command=ui_getdata).pack()
+    Button(app, text='压缩', command=compress).pack()
+    Button(app, text='清除', command=delete).pack()
     app.geometry('300x400')
     return app
+
+
+def delete():
+    try:
+        lbox = app.children['lbox']
+        lbox.delete(0, END)
+    except Exception as e:
+        print(e)
 
 
 def ui_getdata():
