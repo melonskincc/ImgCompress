@@ -1,0 +1,2 @@
+# ImgCompress
+by PIL
